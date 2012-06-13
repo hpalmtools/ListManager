@@ -443,13 +443,26 @@ namespace hp.go2alm.ALMListManagerTool
                         //Deletes the list if exists
                         if (CommonProperties.CustomLists.get_IsListExist(oriListName))
                         {
-                            CommonProperties.CustomLists.RemoveList(oriListName);
+                            CustomizationList customList = (CustomizationList)CommonProperties.CustomLists.get_List(oriCustomList.Name);
+                            CustomizationListNode customListNode1 = (CustomizationListNode)customList.RootNode;
+                            //CommonProperties.CustomLists.RemoveList(oriListName);
+
+                            List lst = customListNode1.Children;
+                            foreach (CustomizationListNode CurrentNode in lst)
+                            {
+                                customListNode1.RemoveChild(CurrentNode.Name);
+                            }
 
                             //Applies customization
                             ALMListMgrDAO.CommitCustomization();
                         }
+                        else
+                        {
+                            CommonProperties.CustomLists.AddList(oriCustomList.Name);
+                            //Applies customization
+                            ALMListMgrDAO.CommitCustomization();
+                        }
 
-                        CommonProperties.CustomLists.AddList(oriCustomList.Name);
                         customListToModify = (CustomizationList)CommonProperties.CustomLists.get_List(oriCustomList.Name);
 
                         customListNode = (CustomizationListNode)customListToModify.RootNode;
