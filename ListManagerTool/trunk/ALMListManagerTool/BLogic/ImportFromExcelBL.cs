@@ -65,7 +65,7 @@ namespace hp.go2alm.ALMListManagerTool
                 int rowsCount = rg.Rows.Count;
                 int colsCount = rg.Columns.Count;
 
-                for (int i = 1; i <= rowsCount; i++)
+                for (int i = 2; i <= rowsCount; i++)
                 {
                     for (int j = 1; j <= colsCount; j++)
                     {
@@ -107,12 +107,24 @@ namespace hp.go2alm.ALMListManagerTool
                                     {
                                         if (CommonProperties.CustomLists.get_IsListExist(itemName)) //If the item exists, remove it
                                         {
-                                            CommonProperties.CustomLists.RemoveList(itemName); //Remove the list with all its items.
+                                            //CommonProperties.CustomLists.RemoveList(itemName); //Remove the list with all its items.
+
+                                            customList = (CustomizationList)CommonProperties.CustomLists.get_List(itemName);
+                                            parentListNode = (CustomizationListNode)customList.RootNode;
+
+                                            List lst = parentListNode.Children;
+                                            foreach (CustomizationListNode CurrentNode in lst)
+                                            {
+                                                parentListNode.RemoveChild(CurrentNode.Name);
+                                            }
+
                                             ALMListMgrDAO.CommitCustomization();
                                         }
-
-                                        CommonProperties.CustomLists.AddList(itemName);
-                                        ALMListMgrDAO.CommitCustomization();
+                                        else
+                                        {
+                                            CommonProperties.CustomLists.AddList(itemName);
+                                            ALMListMgrDAO.CommitCustomization();
+                                        }
 
                                         customList = (CustomizationList)CommonProperties.CustomLists.get_List(itemName);
                                         parentListNode = (CustomizationListNode)customList.RootNode;
@@ -276,12 +288,24 @@ namespace hp.go2alm.ALMListManagerTool
                                     {
                                         if (CommonProperties.CustomLists.get_IsListExist(itemName)) //If the item exists, remove it
                                         {
-                                            CommonProperties.CustomLists.RemoveList(itemName); //Remove the list with all its items.
+                                            //CommonProperties.CustomLists.RemoveList(itemName); //Remove the list with all its items.
+
+                                            customList = (CustomizationList)CommonProperties.CustomLists.get_List(itemName);
+                                            parentListNode = (CustomizationListNode)customList.RootNode;
+
+                                            List lst = parentListNode.Children;
+                                            foreach (CustomizationListNode CurrentNode in lst)
+                                            {
+                                                parentListNode.RemoveChild(CurrentNode.Name);
+                                            }
+
                                             ALMListMgrDAO.CommitCustomization();
                                         }
-
-                                        CommonProperties.CustomLists.AddList(itemName);
-                                        ALMListMgrDAO.CommitCustomization();
+                                        else
+                                        {
+                                            CommonProperties.CustomLists.AddList(itemName);
+                                            ALMListMgrDAO.CommitCustomization();
+                                        }
 
                                         customList = (CustomizationList)CommonProperties.CustomLists.get_List(itemName);
                                         parentListNode = (CustomizationListNode)customList.RootNode;

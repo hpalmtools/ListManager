@@ -389,7 +389,8 @@ namespace hp.go2alm.ALMListManagerTool
                 {
                     if (lstVwEditMode.SelectedItems.Count > 0)
                     {
-                        if (section.ExistListName(lstVwEditMode.SelectedItems[0].Text))
+                        if (section.ExistListName(lstVwEditMode.SelectedItems[0].Text) ||
+                            section.ExistListName(ALMListsTree.SelectedNode.Text))
                         {
                             EnableEditButtons(false);
                             lstVwEditMode.LabelEdit = false;
@@ -442,14 +443,21 @@ namespace hp.go2alm.ALMListManagerTool
 
                     if (importFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        LogInfoMessage("Please wait, this may take a few minutes");
+                        if (MessageBox.Show("This operation will delete all list items and import the items in a clean list. Would you like to continue?", "INFO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                        	Cursor.Current = Cursors.WaitCursor;
 
-                        string message = importExcelBL.ImportFromExcel(importFileDialog.FileName);
-                        //string message = importExcelBL.ImportFromExcelBySheets(importFileDialog.FileName);
+							LogInfoMessage("Please wait, this may take a few minutes");
 
-                        LogInfoMessage(message);
+                        	string message = importExcelBL.ImportFromExcel(importFileDialog.FileName);
+                        	//string message = importExcelBL.ImportFromExcelBySheets(importFileDialog.FileName);
 
-                        LoadALMLists(ALMDomainList.SelectedItem.ToString(), ALMProjectList.SelectedItem.ToString());
+                        	LogInfoMessage(message);
+
+							Cursor.Current = Cursors.Default;
+
+                        	LoadALMLists(ALMDomainList.SelectedItem.ToString(), ALMProjectList.SelectedItem.ToString());
+						}
                     }
                 }
             }

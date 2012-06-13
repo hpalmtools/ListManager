@@ -84,7 +84,7 @@ namespace hp.go2alm.ALMListManagerTool
 
                 //Set the back color for parent list
                 Range rg = (Range)ws.Cells[idxRow, idxCol];
-                rg.Interior.Color = Color.LightGoldenrodYellow;
+                //rg.Interior.Color = Color.LightGoldenrodYellow;
 
                 //Saves the position of item
                 positionHash.Add(customListNode.ID, idxCol.ToString());
@@ -131,7 +131,7 @@ namespace hp.go2alm.ALMListManagerTool
 
                     ws.Cells[idxRow, idxCol] = childListNode.Name.ToString();
                     ((Range)ws.Cells[idxRow, idxCol]).BorderAround();
-                    ((Range)ws.Cells[idxRow, idxCol]).Interior.Color = Color.LightGoldenrodYellow;
+                    //((Range)ws.Cells[idxRow, idxCol]).Interior.Color = Color.LightGoldenrodYellow;
 
                     //Saves the position of item
                     positionHash.Add(childListNode.ID, idxCol.ToString());
