@@ -137,9 +137,9 @@ namespace hp.go2alm.ALMListManagerTool
             this.ALMLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ALMLabel.Image = ((System.Drawing.Image)(resources.GetObject("ALMLabel.Image")));
             this.ALMLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ALMLabel.Location = new System.Drawing.Point(101, 37);
+            this.ALMLabel.Location = new System.Drawing.Point(60, 37);
             this.ALMLabel.Name = "ALMLabel";
-            this.ALMLabel.Size = new System.Drawing.Size(568, 87);
+            this.ALMLabel.Size = new System.Drawing.Size(657, 87);
             this.ALMLabel.TabIndex = 45;
             this.ALMLabel.Text = "  Application Lifecycle Management";
             this.ALMLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -630,8 +630,9 @@ namespace hp.go2alm.ALMListManagerTool
             this.Controls.Add(this.OpenLogFolderButton);
             this.Controls.Add(this.StatusBar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(700, 700);
             this.Name = "ALMListManagerFrm";
-            this.Text = "ALM List Manager Tool";
+            this.Text = "ALM List Manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ALMListManagerFrm_FormClosing);
             this.TabControl.ResumeLayout(false);
             this.ALMLoginTab.ResumeLayout(false);
