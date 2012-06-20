@@ -47,6 +47,7 @@ namespace hp.go2alm.ALMListManagerTool
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ALMSaveTo));
             this.gbSaveTo = new System.Windows.Forms.GroupBox();
             this.gbCurrentList = new System.Windows.Forms.GroupBox();
             this.lstVwALMList = new System.Windows.Forms.ListView();
@@ -258,6 +259,7 @@ namespace hp.go2alm.ALMListManagerTool
             this.ControlBox = false;
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.gbSaveTo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "ALMSaveTo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

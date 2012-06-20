@@ -46,6 +46,7 @@ namespace hp.go2alm.ALMListManagerTool
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExportToExcel));
             this.gbLists = new System.Windows.Forms.GroupBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnExportExcel = new System.Windows.Forms.Button();
@@ -149,6 +150,7 @@ namespace hp.go2alm.ALMListManagerTool
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.gbDomainProject);
             this.Controls.Add(this.gbLists);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ExportToExcel";
