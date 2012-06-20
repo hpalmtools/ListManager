@@ -69,7 +69,7 @@ namespace hp.go2alm.ALMListManagerTool
             }
             catch (Exception te)
             {
-                LogErrorMessage("User Logged off from ALM session. Login action aborted. " + te.Message);
+                LogErrorMessage("User logged off from ALM session. Login action aborted. " + te.Message);
             }
         }
 
@@ -663,7 +663,7 @@ namespace hp.go2alm.ALMListManagerTool
                     LogInfoMessage("Logging in to ALM... ");
                     ALMLoginButton.Enabled = false;
 
-                    ALMListMgrBL.PerformALMLogin(cmbALMServer.SelectedItem.ToString(), ALMUser.Text, ALMPassword.Text);
+                    ALMListMgrBL.PerformALMLogin(cmbALMServer.Text, ALMUser.Text, ALMPassword.Text);
 
                     LogInfoMessage("Finished ALM login");
                     ALMUser.Enabled = false;
@@ -688,16 +688,16 @@ namespace hp.go2alm.ALMListManagerTool
             catch (Exception ex)
             {
                 LogErrorMessage("ALM login FAILED.");
-                string errorMessage = "Invalid user or password, please try to Log in again... ";
+                string errorMessage = "Error while login in.";
                 if (ex.Message.Contains("Retrieving the COM class factory for component with CLSID"))
                 {
-                    errorMessage = "Please install ALM, It is a prerequisite for using this tool.";
+                    errorMessage = "Please install ALM, it is a prerequisite for using this tool.";
                 }
                 else if (ex.Message.Contains("Unable to cast COM object of type"))
                 {
-                    errorMessage = "Please install ALM Connectivity addin, It is a prerequisite for using this tool.";
+                    errorMessage = "Please install ALM connectivity addin, it is a prerequisite for using this tool.";
                 }
-                LogErrorMessage(errorMessage + " For more info check the user guide. " + ex.Message);
+                LogErrorMessage(errorMessage + " For more info check the user guide. Error: " + ex.Message);
                 ALMLoginLabel.ForeColor = Color.Red;
                 ALMLoginLabel.Text = errorMessage;
                 ALMPassword.Focus();
@@ -816,9 +816,9 @@ namespace hp.go2alm.ALMListManagerTool
         {
             try
             {
-                LogInfoMessage("User Logged off from ALM session. Aborting sessions in the middle of a transaction may cause some exceptions, please ignore any exceptions in the following seconds.");
+                LogInfoMessage("User logged off from ALM session. Aborting sessions in the middle of a transaction may cause some exceptions, please ignore any exceptions in the following seconds.");
                 ALMLoginLabel.ForeColor = Color.Black;
-                ALMLoginLabel.Text = "Please Log in to ALM...";
+                ALMLoginLabel.Text = "Please log in to ALM...";
                 ALMPassword.Text = "";
                 ALMUser.Enabled = true;
                 ALMPassword.Enabled = true;
@@ -1008,6 +1008,12 @@ namespace hp.go2alm.ALMListManagerTool
         }
 
         #endregion
+
+        private void ALMListManagerFrm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Make sure we disconnect from ALM when closing
+            PerformLogOff();
+        }
     }
         
 }
