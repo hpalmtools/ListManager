@@ -181,5 +181,18 @@ namespace hp.go2alm.ALMListManagerTool
         {
             CommonProperties.Customization.Commit();
         }
+
+        public void ReleaseConnObject()
+        {
+            try
+            {
+                CommonProperties.ALMConnection.ReleaseConnection();
+                CommonProperties.ALMConnection = null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

@@ -647,5 +647,13 @@ namespace hp.go2alm.ALMListManagerTool
         {
             ALMListMgrDAO.PerformALMProjectConnection(ALMDomainName, ALMProjectName);
         }
+
+        /// <summary>
+        /// Release the connection object.
+        /// </summary>
+        public void ReleaseConnObject()
+        {
+            ALMListMgrDAO.ReleaseConnObject();
+        }
     }
 }

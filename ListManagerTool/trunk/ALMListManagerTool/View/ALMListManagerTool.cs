@@ -706,7 +706,8 @@ namespace hp.go2alm.ALMListManagerTool
                 ALMDomainList.Enabled = false;
                 ALMProjectList.Enabled = false;
 
-                ALMListMgrBL.ALMLogOff();
+                //ALMListMgrBL.ALMLogOff();
+                ALMListMgrBL.ReleaseConnObject();
 
                 EnableAllButtons(false);
 
